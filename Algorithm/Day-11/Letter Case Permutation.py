@@ -1,13 +1,19 @@
-def letterCasePermutation(self, s: str) -> List[str]:
-        output = []
-        def casePerm(s, str_):
-            if s == "":
-                output.append(str_)
-            else:
-                s_ = str_ + s[0].lower()
-                casePerm(s[1:], s_)
-                if not s[0].isdigit():
-                    s_ = str_ + s[0].upper()
-                    casePerm(s[1:], s_)
-        casePerm(s, "")
-        return output
+class Solution(object):
+    def letterCasePermutation(self, s):
+        arr = []
+        
+        def backTracking(subString):
+            
+            count = len(subString)
+            
+            if (count== len(s)):
+                arr.append(subString)
+                return
+                
+            if(s[count].isalpha()):
+                backTracking(subString+s[count].swapcase())
+                
+            backTracking(subString +s[count])
+            
+        backTracking("")
+        return arr
