@@ -1,4 +1,4 @@
-able: World
+Table: World
 
 +-------------+---------+
 | Column Name | Type    |
