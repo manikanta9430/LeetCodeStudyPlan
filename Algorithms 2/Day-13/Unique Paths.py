@@ -1,9 +1,7 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        def backtracking(i,j):
-            if i==m-1 and j==n-1:
-                return 1
-            elif i>m-1 or j>n-1:
-                return 0
-            return backtracking(i+1,j)+backtracking(i,j+1)
-        return backtracking(0,0)
+        dp = [[1 for _ in range(n)] for _ in range(m)]
+        for j in range(n-2,-1,-1):
+            for i in range(m-2,-1,-1):
+                dp[i][j] = dp[i][j+1] + dp[i+1][j];
+        return dp[0][0]
