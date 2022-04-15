@@ -1,21 +1,8 @@
-class Solution(object):
-    def sortedArrayToBST(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: TreeNode
-        """
-        
-        
-        def build(nums, left, right):
-            if left > right:
-                return None
-            
-            mid = (left + right) / 2
-            
-            node = TreeNode(nums[mid])
-            node.left = build(nums, left, mid-1)
-            node.right = build(nums, mid+1, right)
-            
-            return node
-        
-        return build(nums, 0, len(nums)-1)
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        if not nums: return None
+        mid = len(nums)//2
+        root = TreeNode(nums[mid])
+        root.left = self.sortedArrayToBST(nums[:mid])
+        root.right = self.sortedArrayToBST(nums[mid+1:])
+        return root
